@@ -1,0 +1,50 @@
+POST http://localhost:4000/createUser
+Content-Type: application/json
+
+{
+    "name": "Moy",
+    "email": "moy@gmail.com",
+    "password":"123456789"
+}
+
+###
+
+GET http://localhost:4000/createUser/login
+Content-Type: application/json
+
+{
+    "name": "Moy",
+    "password":"123456789"
+}
+
+###
+
+GET http://localhost:4000/createUser/getDetails
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.TW95.g2JzekXfXXn6grqJLvd3w53bmD19bOkVJSzNknQ4lqo
+
+
+###
+POST http://localhost:4000/createUser/userDetails
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.TW95.g2JzekXfXXn6grqJLvd3w53bmD19bOkVJSzNknQ4lqo
+
+{
+    "age": "20",
+    "gender":"Female",
+    "DOB":"30/05/2000",
+    "mobile":"9449620444"
+}
+
+
+###
+
+PATCH http://localhost:4000/createUser/updateDetails
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.TW95.g2JzekXfXXn6grqJLvd3w53bmD19bOkVJSzNknQ4lqo
+
+{
+    "age": "30",
+    "gender":"Male",
+    "DOB":"25/07/2000",
+    "mobile":"9487877931"
+}
