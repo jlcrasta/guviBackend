@@ -4,6 +4,7 @@ const app = express()
 const mongoose = require('mongoose')
 const createUser = require('./Routes/createUser')
 
+const PORT = process.env.PORT
 
 mongoose.connect(process.env.DATABASE_URL)
 const db = mongoose.connection;
@@ -19,6 +20,6 @@ app.use('/createUser', createUser)
 
 
 
-app.listen(process.env.PORT, () => {
-    console.log('Listening on port 4000')
+app.listen(PORT, () => {
+    console.log(`Listening on port ${PORT}`)
 })
