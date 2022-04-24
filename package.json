@@ -3,9 +3,6 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "engines": {
-    "node": "v14.16.0"
-  },
   "dependencies": {
     "bcrypt": "^5.0.1",
     "express": "^4.17.3",
@@ -17,7 +14,7 @@
     "nodemon": "^2.0.15"
   },
   "scripts": {
-    "start": "node app.js"
+    "start": "node index.js"
   },
   "keywords": [],
   "author": "",
