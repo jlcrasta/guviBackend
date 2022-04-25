@@ -22,13 +22,21 @@ function AuthenticateToken(req, res, next) {//middleware
 router.post('/', async (req, res) => {
     try {
         const hashedPwd = await bcrypt.hash(req.body.password, 12)
-        const newUser = new CreateUser({
-            name: req.body.name,
-            email: req.body.email,
-            password: hashedPwd
-        })
-        await newUser.save();
-        res.status(200).json(newUser)
+
+        const isUser = await CreateUser.findOne({ name: req.body.name })
+        const isEmail = await CreateUser.findOne({ email: req.body.email })
+        if (!isUser && !isEmail) {
+            const newUser = new CreateUser({
+                name: req.body.name,
+                email: req.body.email,
+                password: hashedPwd
+            })
+            await newUser.save();
+            res.status(200).json(newUser)
+        }
+        else {
+            res.status(200).json({ message: "username or email exists" })
+        }
     }
     catch (err) {
         res.status(400).json({ message: err.message })
@@ -36,11 +44,12 @@ router.post('/', async (req, res) => {
 
 })
 
-router.get('/login', async (req, res) => {
-    const foundUser = await CreateUser.findOne({
-        name: req.body.name
-    })
+router.post('/login', async (req, res) => {
     try {
+        const foundUser = await CreateUser.findOne({
+            name: req.body.name
+        })
+
         if (foundUser) {
             const isUser = await bcrypt.compare(req.body.password, foundUser.password);
             if (isUser) {

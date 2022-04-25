@@ -2,18 +2,18 @@ POST http://localhost:4000/createUser
 Content-Type: application/json
 
 {
-    "name": "Moy",
-    "email": "moy@gmail.com",
+    "name": "water1",
+    "email": "water1@gmail.com",
     "password":"123456789"
 }
 
 ###
 
-GET http://localhost:4000/createUser/login
+POST http://localhost:4000/createUser/login
 Content-Type: application/json
 
 {
-    "name": "Moy",
+    "name": "water",
     "password":"123456789"
 }
 
