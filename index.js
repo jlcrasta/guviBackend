@@ -7,7 +7,7 @@ const express = require('express')
 const app = express()
 const mongoose = require('mongoose')
 const createUser = require('./Routes/createUser')
-
+const cors = require('cors')
 const PORT = process.env.PORT
 
 mongoose.connect(process.env.DATABASE_URL)
@@ -18,6 +18,12 @@ db.on('error', (error) => {
 db.once('open', () => {
     console.log('connected to database')
 })
+
+app.use(
+    cors({
+        origin: "*"
+    })
+)
 
 app.use(express.json())
 app.use('/createUser', createUser)
